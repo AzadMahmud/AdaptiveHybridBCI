@@ -1,0 +1,17 @@
+# Requirements for the preprocessing module
+
+# Core scientific computing libraries
+numpy>=1.21.0
+scipy>=1.7.0
+
+# MNE for EEG data handling
+mne>=1.0.0
+
+# PyRiemann for Riemannian geometry (to be used in later stages)
+pyriemann>=0.2.7
+
+# PyWavelets for wavelet transforms
+PyWavelets>=1.2.0
+
+# scikit-learn for machine learning utilities
+scikit-learn>=1.0.0
