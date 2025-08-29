@@ -1,6 +1,6 @@
+# Adaptive Hybrid BCI
 
-
-# Adaptive Hybrid BCI: Fusing Causal-Temporal Convolutions with Handcrafted Features for Subject-Independent Motor Imagery Classification
+This project implements the Adaptive Hybrid BCI approach proposed in `gemini_bci_proposal.md` for subject-independent motor imagery classification.
 
 ## Project Structure
 
@@ -33,6 +33,38 @@ python run_full_preprocessing.py
 
 For more details, see `src/preprocessing/README.md`.
 
+## Deep Learning Model (TCN)
+
+The Temporal Convolutional Network (TCN) model, which is the deep learning component (Branch B) of the Adaptive Hybrid BCI, has been implemented and tested:
+
+1. Complete TCN architecture implementation with causal, dilated convolutions and residual connections
+2. Validation script to test the model implementation without training
+3. Updated training script that works with the preprocessed data
+4. Leave-One-Subject-Out (LOSO) cross-validation framework for subject-independent evaluation
+
+To validate the TCN implementation:
+
+```bash
+cd src/models
+python validate_tcn.py
+```
+
+To train the TCN model on a single subject:
+
+```bash
+cd src/models
+python train_tcn_updated.py --subject_id A01 --epochs 10 --batch_size 32
+```
+
+To run LOSO cross-validation:
+
+```bash
+cd src/models
+python loso_evaluation.py
+```
+
+For more details, see `src/models/README.md`.
+
 ## Requirements
 
 All requirements are listed in `requirements.txt`. To install:
@@ -52,9 +84,10 @@ pip install PyWavelets
 - [x] Project setup and proposal documentation
 - [x] Data handling and basic preprocessing
 - [x] Advanced preprocessing pipeline with artifact removal
+- [x] Deep learning model (TCN) implementation and validation
+- [x] LOSO evaluation framework for subject-independent performance
 - [ ] Feature extraction (Riemannian/Handcrafted features)
-- [ ] Deep learning model (TCN)
 - [ ] Adaptive fusion mechanism
-- [ ] Training and evaluation framework
+- [ ] Training and evaluation framework for hybrid model
 - [ ] Baseline implementations
 - [ ] Experimentation and analysis
