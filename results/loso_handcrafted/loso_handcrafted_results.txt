@@ -1,0 +1,15 @@
+LOSO Cross-Validation Results for Handcrafted Features with LDA
+==================================================
+Average Accuracy: 0.2601 ± 0.0142
+Average Kappa: 0.0127 ± 0.0176
+
+Per-subject results:
+  A01: Accuracy = 0.2601, Kappa = 0.0127
+  A02: Accuracy = 0.2667, Kappa = 0.0216
+  A03: Accuracy = 0.2296, Kappa = -0.0252
+  A04: Accuracy = 0.2595, Kappa = 0.0099
+  A05: Accuracy = 0.2863, Kappa = 0.0470
+  A06: Accuracy = 0.2694, Kappa = 0.0189
+  A07: Accuracy = 0.2546, Kappa = 0.0053
+  A08: Accuracy = 0.2614, Kappa = 0.0118
+  A09: Accuracy = 0.2532, Kappa = 0.0121

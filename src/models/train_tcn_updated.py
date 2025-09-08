@@ -27,7 +27,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(_
 sys.path.insert(0, project_root)
 
 # Import the TCN model
-from src.models.tcn import TCN
+from src.models.tcn import ATCNet as TCN
 
 # --- Configuration ---
 DATA_DIR = os.path.join(project_root, 'data', 'preprocessed')
@@ -218,8 +218,8 @@ def load_model(model, filepath, device):
     return model
 
 def run_tcn_experiment(subject_id, epochs=10, batch_size=32, learning_rate=0.001, 
-                       tcn_output_dim=64, num_channels=[32, 32, 32, 32], kernel_size=3, 
-                       dropout=0.2, save_model_flag=False):
+                       num_channels=[32, 32, 32, 32], kernel_size=3, 
+                       dropout=0.5, save_model_flag=False):
     """
     Run a complete TCN experiment for a single subject.
     
@@ -268,55 +268,28 @@ def run_tcn_experiment(subject_id, epochs=10, batch_size=32, learning_rate=0.001
         # 3. Define model, loss, and optimizer
         input_size = 22  # Number of EEG channels for BCI IV 2a
         
-        model = TCN(input_size=input_size, output_size=tcn_output_dim,
+        model = TCN(input_size=input_size, output_size=4,
                     num_channels=num_channels, kernel_size=kernel_size, dropout=dropout).to(device)
-        
-        # Final classifier takes f_tcn as input
-        # For 4-class classification
-        classifier = nn.Linear(tcn_output_dim, 4).to(device) 
         
         # Loss and optimizer
         criterion = nn.CrossEntropyLoss()
-        # Optimizer for both TCN and classifier
-        optimizer = optim.Adam(list(model.parameters()) + list(classifier.parameters()), 
-                              lr=learning_rate)
+        optimizer = optim.Adam(model.parameters(), lr=learning_rate)
         
         print(f"TCN Model instantiated.")
         total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-        total_params_cls = sum(p.numel() for p in classifier.parameters() if p.requires_grad)
-        print(f"Trainable parameters in TCN: {total_params}")
-        print(f"Trainable parameters in Classifier: {total_params_cls}")
-        print(f"Total trainable parameters: {total_params + total_params_cls}")
+        print(f"Total trainable parameters: {total_params}")
         
         # 4. Train the model
         train_losses = train_model(model, train_loader, criterion, optimizer, device, epochs)
         
         # 5. Evaluate the model
-        # We need to pass the model and the final layer together for evaluation
-        # Let's create a combined model for evaluation
-        class CombinedModel(nn.Module):
-            def __init__(self, tcn, classifier):
-                super(CombinedModel, self).__init__()
-                self.tcn = tcn
-                self.classifier = classifier
-                
-            def forward(self, x):
-                f_tcn = self.tcn(x)
-                out = self.classifier(f_tcn)
-                return out
-                
-        combined_model = CombinedModel(model, classifier)
-        accuracy, kappa, preds, targets = evaluate_model(combined_model, test_loader, device)
+        accuracy, kappa, preds, targets = evaluate_model(model, test_loader, device)
         
         # 6. Save model if requested
         if save_model_flag:
             model_filename = f"tcn_model_{subject_id}.pth"
             model_filepath = os.path.join(RESULTS_DIR, model_filename)
             save_model(model, model_filepath)
-            
-            classifier_filename = f"classifier_{subject_id}.pth"
-            classifier_filepath = os.path.join(RESULTS_DIR, classifier_filename)
-            save_model(classifier, classifier_filepath)
         
         print("TCN experiment completed.")
         
@@ -359,7 +332,6 @@ def main():
         epochs=args.epochs,
         batch_size=args.batch_size,
         learning_rate=args.learning_rate,
-        tcn_output_dim=args.tcn_output_dim,
         save_model_flag=args.save_model
     )
     

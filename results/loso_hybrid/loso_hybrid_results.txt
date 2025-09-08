@@ -1,0 +1,15 @@
+LOSO Cross-Validation Results for Adaptive Hybrid BCI Model
+==================================================
+Average Accuracy: 0.2402 ± 0.0254
+Average Kappa: -0.0142 ± 0.0342
+
+Per-subject results:
+  A01: Accuracy = 0.2161, Kappa = -0.0450
+  A02: Accuracy = 0.2074, Kappa = -0.0558
+  A03: Accuracy = 0.2259, Kappa = -0.0302
+  A04: Accuracy = 0.2214, Kappa = -0.0392
+  A05: Accuracy = 0.2748, Kappa = 0.0320
+  A06: Accuracy = 0.2283, Kappa = -0.0375
+  A07: Accuracy = 0.2841, Kappa = 0.0469
+  A08: Accuracy = 0.2462, Kappa = -0.0071
+  A09: Accuracy = 0.2574, Kappa = 0.0082

@@ -1,0 +1,15 @@
+LOSO Cross-Validation Results for ATCNet Model
+==================================================
+Average Accuracy: 0.2612 ± 0.0176
+Average Kappa: 0.0149 ± 0.0269
+
+Per-subject results:
+  A01: Accuracy = 0.2418, Kappa = -0.0104
+  A02: Accuracy = 0.2630, Kappa = 0.0102
+  A03: Accuracy = 0.2778, Kappa = 0.0378
+  A04: Accuracy = 0.2672, Kappa = 0.0263
+  A05: Accuracy = 0.2405, Kappa = -0.0076
+  A06: Accuracy = 0.2603, Kappa = 0.0093
+  A07: Accuracy = 0.2362, Kappa = -0.0281
+  A08: Accuracy = 0.2727, Kappa = 0.0309
+  A09: Accuracy = 0.2911, Kappa = 0.0656

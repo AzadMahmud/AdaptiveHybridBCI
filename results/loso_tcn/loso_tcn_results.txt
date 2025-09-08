@@ -1,15 +1,15 @@
 LOSO Cross-Validation Results for TCN Model
 ==================================================
-Average Accuracy: 0.2550 ± 0.0151
-Average Kappa: 0.0083 ± 0.0188
+Average Accuracy: 0.2516 ± 0.0141
+Average Kappa: 0.0014 ± 0.0183
 
 Per-subject results:
-  A01: Accuracy = 0.2747, Kappa = 0.0300
-  A02: Accuracy = 0.2778, Kappa = 0.0398
-  A03: Accuracy = 0.2630, Kappa = 0.0105
-  A04: Accuracy = 0.2634, Kappa = 0.0105
-  A05: Accuracy = 0.2557, Kappa = 0.0156
-  A06: Accuracy = 0.2420, Kappa = 0.0113
-  A07: Accuracy = 0.2399, Kappa = -0.0133
-  A08: Accuracy = 0.2462, Kappa = -0.0071
-  A09: Accuracy = 0.2321, Kappa = -0.0222
+  A01: Accuracy = 0.2711, Kappa = 0.0290
+  A02: Accuracy = 0.2370, Kappa = -0.0149
+  A03: Accuracy = 0.2593, Kappa = 0.0056
+  A04: Accuracy = 0.2595, Kappa = 0.0052
+  A05: Accuracy = 0.2595, Kappa = 0.0059
+  A06: Accuracy = 0.2329, Kappa = 0.0036
+  A07: Accuracy = 0.2399, Kappa = -0.0099
+  A08: Accuracy = 0.2689, Kappa = 0.0229
+  A09: Accuracy = 0.2363, Kappa = -0.0353
